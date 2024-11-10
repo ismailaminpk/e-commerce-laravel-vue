@@ -17,7 +17,7 @@ class AuthController extends Controller
         $user         =  new User();
         $user->name   =  'Admin';
         $user->email   =  'admin@admin.com';
-        $user->password = Hash::make('1234');
+        $user->password = Hash::make('123456');
         $user->save();
 
         $admin = Role::where('slug', 'admin')->first();
