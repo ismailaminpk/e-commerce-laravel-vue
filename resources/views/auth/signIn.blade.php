@@ -98,6 +98,7 @@
                         type: 'post',
                         success: function(result) {
                             if (result.status == 200) {
+                                window.location.href = result.url;
                                 console.log('Succesfully submit');
                             } else {
                                 alert('Wrong credentials');

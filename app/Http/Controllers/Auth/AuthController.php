@@ -23,7 +23,7 @@ class AuthController extends Controller
             // if auth true
             if (Auth::attempt($cred, false)) {
                 if (Auth::user()->hasRole('admin')) {
-                    return response()->json(['status' => 200, 'message' => 'Admin user successfully logged in']);
+                    return response()->json(['status' => 200, 'message' => 'Admin user successfully logged in', 'url' => 'admin/dashboard']);
                 } else {
                     return response()->json(['status' => 200, 'message' => 'You are not an admin']);
                 }

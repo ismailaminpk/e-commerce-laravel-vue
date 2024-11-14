@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.index');
-});
+// Route::get('/', function () {
+//     return view('admin.index');
+// });
 
 Route::get('/login', function () {
     return view('auth.signIn');
 });
 
-Route::get('/admin-create', ['AuthController@createAdmin'])->name('admin.create');
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+});
 
-Route::post('login-user', ['Auth\AuthController@loginUser'])->name('user.login');
+Route::get('/admin-create', [AdminAuthController::class, 'createAdmin'])->name('admin.create');
+
+Route::post('login-user', [AuthController::class, 'loginUser'])->name('user.login');
